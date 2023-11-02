@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "version": "1.0.0",
+  "name": "2fa-dev",
+  "repository": "2factorauth/frontend",
+  "description": "2fa-dev",
+  "scripts": {
+    "dev": "hugo serve",
+    "build": "sh scripts/build.sh"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.12",
+    "node-html-parser": "5.2.0",
+    "sass": "^1.55.0"
+  },
+  "dependencies": {
+    "algoliasearch": "^4.14.2",
+    "html-minifier": "^4.0.0"
+  }
+}

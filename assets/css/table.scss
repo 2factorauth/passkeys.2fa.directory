@@ -1,0 +1,423 @@
+/** Desktop View **/
+@media screen and (min-width: 993px) {
+  .table {
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, .2), 0 0 0 1px rgba(0, 0, 0, .08);
+
+    .table-head {
+      display: grid;
+      grid-template-columns: 20em repeat(6, 1fr);
+      grid-template-rows: 1fr;
+      position: sticky;
+      top: 0;
+      padding-left: .5em;
+      background: var(--table-head-bg) !important;
+      font-family: var(--default-font);
+      font-weight: 500;
+      color: var(--text-color);
+      line-height: 53px;
+
+      div {
+        text-align: center;
+        height: 53px;
+        font-size: 1.1em;
+      }
+
+      & > *:not(:last-child) {
+        border-right: var(--table-border);
+      }
+    }
+  }
+
+  .entry {
+    padding-left: .5em;
+    border-bottom: var(--table-border);
+    display: grid;
+    line-height: 53px;
+    grid-template-rows: 1fr;
+    height: 4.4rem;
+    @media (prefers-color-scheme: dark) {
+      color-scheme: light;
+    }
+
+    /* replace with :has(.tfa) when supported */
+    &.green {
+      grid-template-columns: 20em repeat(6, 1fr);
+    }
+
+    /* replace with :has(.contact) when supported */
+    &.red {
+      grid-template-columns: 20em 1fr;
+      line-height: 4.4rem;
+    }
+
+    & > *:not(:last-child) {
+      border-right: var(--table-border);
+    }
+
+    div {
+      overflow: clip;
+    }
+
+    .title {
+      display: grid;
+      grid-auto-flow: column;
+      justify-content: space-between;
+      :last-child {
+        padding-right: .5em;
+      }
+    }
+
+    .name {
+      grid-area: 1 / 1 / 2 / 2;
+      line-height: 4.4rem;
+      padding: 0 ;
+    }
+
+    .note {
+      float: right;
+      font-size: 1.4em;
+      color: #db2828;
+      justify-self: end;
+    }
+
+    .docs {
+      grid-area: 1 / 2 / 2 / 3;
+      display: flex;
+      flex-wrap: wrap;
+
+      .website-doc {
+        display: block;
+        text-decoration: none;
+        margin: auto;
+
+        &:after {
+          content: '\F3B8';
+          font-family: 'bootstrap-icons';
+          font-size: 1.6em;
+          vertical-align: middle;
+        }
+      }
+
+      .recovery-doc {
+        display: block;
+        text-decoration: none;
+        margin: auto;
+
+        &:after {
+          content: '\F116';
+          font-family: 'bootstrap-icons';
+          font-size: 1.6em;
+          font-weight: 600;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .method {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 27px;
+      line-height: 53px;
+
+      * {
+        margin: auto;
+        display: block;
+      }
+
+      &.used {
+        &:before {
+          content: '\F633';
+          font-family: 'bootstrap-icons';
+          margin: auto;
+          display: block;
+          font-weight: 600;
+        }
+      }
+
+      &.sms {
+        grid-area: 1 / 3 / 2 / 4;
+      }
+
+      &.voice {
+        grid-area: 1 / 4 / 2 / 5;
+      }
+
+      &.email {
+        grid-area: 1 / 5 / 2 / 6;
+      }
+
+      &.hardware {
+        grid-area: 1 / 6 / 2 / 7;
+      }
+
+      &.software {
+        grid-area: 1 / 7 / 2 / 8;
+      }
+    }
+
+    .contact {
+      margin-left: 1em;
+
+      &:before {
+        content: 'Tell them to support 2FA';
+        margin-right: .25em;
+      }
+
+      button {
+        margin-left: .5em;
+        &:before {
+          margin-right: .5em;
+        }
+
+        &:after {
+          font-size: 15px;
+        }
+
+        &.twitter:after {
+          content: 'On Twitter';
+        }
+
+        &.facebook:after {
+          content: 'On Facebook';
+        }
+
+        &.email:after {
+          content: 'Via Email';
+        }
+
+        &.form:after {
+          content: 'Via Form';
+        }
+      }
+    }
+
+    .tfa-summary {
+      position: absolute;
+      top:-1000px;
+      left:-1000px;
+    }
+  }
+}
+
+.contact {
+
+  button {
+    width: 140px;
+    margin: .2em;
+    line-height: 2em;
+    border: none;
+    color: white;
+    border-radius: 2px;
+
+    &:before {
+      font-family: 'bootstrap-icons';
+      vertical-align: middle;
+    }
+
+    &.twitter {
+      background: #1da1f2;
+
+      &:before {
+        content: '\F5EF';
+      }
+    }
+
+    &.facebook {
+      background: #3b5998;
+
+      &:before {
+        content: '\F344';
+      }
+    }
+
+    &.email,&.form {
+      background: #ea4235;
+
+      &:before {
+        content: '\F32C';
+      }
+    }
+  }
+}
+
+.popover {
+  color: #000;
+
+  li {
+    margin-left: .5em;
+  }
+}
+
+.name {
+  display: inline-block;
+  max-width: 100%;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--table-text-color) !important;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  align-self: center;
+
+  .logo {
+    margin-right: 0.7em;
+    max-height: 2.5em;
+    width: 2.5em;
+    vertical-align: middle;
+  }
+}
+
+/** Universal styles **/
+.entry {
+  &.green {
+    background: var(--table-bg-green);
+  }
+
+  &.red {
+    background: var(--table-bg-red);
+  }
+}
+
+/** Mobile View **/
+@media screen and (max-width: 992px) {
+  .table {
+    overflow: hidden;
+  }
+  .table-head {
+    display: none;
+  }
+  .entry {
+    padding: 1em;
+    display: grid;
+    border-bottom: var(--table-border);
+
+    .title {
+      display: grid;
+      grid-auto-flow: column;
+    }
+
+    .name {
+      font-family: var(--default-font);
+      font-weight: 300;
+      grid-area: 1 / 1 / 2 / 2;
+      padding: .5em;
+    }
+
+    .note {
+      float: right;
+      margin-right: .5rem;
+      font-size: 2em;
+      line-height: 1.2em;
+      color: #d03333;
+    }
+
+    & > .sms, & > .voice, & > .email, & > .hardware, & > .software {
+      display: none;
+    }
+
+    &.green {
+      .tfa-summary {
+        grid-area: 2 / 1 / 3 / 2;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li:before {
+          content: '\F633';
+          font-family: 'bootstrap-icons';
+          margin-right: 5px;
+          font-size: 20px;
+          font-weight: 600;
+          vertical-align: middle;
+        }
+      }
+
+      .docs {
+        grid-area: 3 / 1 / 4 / 2;
+        display: grid;
+        grid-template-columns:repeat(auto-fit, minmax(5em, 1fr));
+        grid-template-rows: 1fr;
+
+        & > * {
+          display: block;
+          text-decoration: none;
+          margin: auto;
+          width: calc(100% - .5em);
+          max-width: 60vw;
+          text-align: center;
+          font-size: 1.3em;
+          line-height: 2em;
+          border-radius: 2px;
+          padding: 0 .5em;
+          background: var(--bs-link-color);
+          color: #fff;
+          overflow: hidden;
+        }
+
+        .website-doc {
+
+          &:before {
+            content: '\F3B8';
+            font-family: 'bootstrap-icons';
+            margin-right: .3em;
+            font-size: .8em;
+            vertical-align: middle;
+          }
+
+          &:after {
+            content: 'Documentation';
+            font-family: var(--default-font);
+            font-weight: 300;
+            vertical-align: middle;
+          }
+        }
+
+        .recovery-doc {
+          &:before {
+            content: '\F116';
+            font-family: 'bootstrap-icons';
+            margin-right: .3em;
+            font-size: .8em;
+            font-weight: 600;
+            vertical-align: middle;
+          }
+
+          &:after {
+            content: 'Recovery';
+            font-family: var(--default-font);
+            font-weight: 300;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    &.red {
+      .tfa-summary:before {
+        display: block;
+        content: '2FA Not Supported';
+        font-family: var(--default-font);
+        font-weight: 300;
+        text-align: center;
+        width: 100%;
+        font-size: 1.4rem;
+      }
+
+      .contact {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(5em, 1fr));
+        grid-template-rows: 1fr;
+        grid-gap: 1em;
+
+        button {
+          border-radius: 2px;
+          line-height: calc(2em + 5px);
+          margin: auto;
+          width: calc(100% - .5em);
+          max-width: 60vw;
+        }
+      }
+    }
+  }
+}

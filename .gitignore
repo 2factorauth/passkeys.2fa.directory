@@ -1,0 +1,16 @@
+.*
+/_*
+vendor
+node_modules
+*-lock.*
+*.lock
+data
+resources
+public
+static/img
+
+!.editorconfig
+!.gitignore
+!data/categories.json
+!data/members.json
+content/[a-z][a-z]/
