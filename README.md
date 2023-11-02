@@ -1,8 +1,8 @@
-# 2FA.Directory Frontend
+# Passkeys Frontend
 
-This repository contains the HTML, JavaScript and CSS for [2fa.directory][website].  
+This repository contains the HTML, JavaScript and CSS for [passkeys.2fa.directory][website].  
 All data used to populate the categories is located
-in [2factorauth/twofactorauth][data_repo].
+in [2factorauth/passkeys][data_repo].
 
 ![][screenshot]
 
@@ -75,13 +75,13 @@ this [guide][gplv3_guide].
 
 [cf_dash]: https://dash.cloudflare.com/
 [cf_pages]: https://pages.cloudflare.com/
-[data_repo]: https://github.com/2factorauth/twofactorauth.git
-[data_license]: https://github.com/2factorauth/twofactorauth/blob/master/LICENSE.md
+[data_repo]: https://github.com/2factorauth/passkeys.git
+[data_license]: https://github.com/2factorauth/passkeys/blob/master/LICENSE.md
 [editorconfig]: https://editorconfig.org/
 [gplv3_guide]: https://www.gnu.org/licenses/quick-guide-gplv3.html
 [hugo]: https://gohugo.io/
 [localhost]: http://127.0.0.1:1313/
 [hugo_install]: https://gohugo.io/installation/
 [ruby_install]: https://www.ruby-lang.org/en/documentation/installation/
-[website]: https://2fa.directory/
+[website]: https://passkeys.2fa.directory/
 [screenshot]: https://i.imgur.com/4WvIsg0.png

@@ -1,8 +1,8 @@
-title: "2FA Directory"
+title: "Passkeys Directory"
 copyright: "2factorauth"
 languageCode: "en"
 DefaultContentLanguage: "en"
-disableKinds: ["taxonomy", "taxonomyTerm"]
+disableKinds: ["taxonomy"]
 disableHugoGeneratorInject: true
 enableEmoji: true
 enableGitInfo: true
@@ -10,7 +10,7 @@ enableRobotsTXT: true
 
 params:
   default:
-    description: "List of sites with two factor auth support which includes SMS, email, phone calls, hardware, and software."
+    description: "List of sites with passkeys support."
     github: "2factorauth/twofactorauth"
     theme_color: "#38CCCC"
     icon_path: "https://api.2fa.directory/icons/"
