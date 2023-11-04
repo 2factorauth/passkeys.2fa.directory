@@ -48,10 +48,10 @@ Explanation:
         {{- if in $entry.passkeys "mfa" -}}<li>MFA-only</li>{{- end -}}
       </ul>
 
-      <div style="display: flex; justify-content: center">
-        {{- if in $entry.passkeys "allowed" -}}<div>Allowed</div>{{- end -}}
-        {{- if in $entry.passkeys "required" -}}<div>Required</div>{{- end -}}
-        {{- if in $entry.passkeys "mfa" -}}<div>MFA-only</div>{{- end -}}
+      <div class="supported" style="display: flex; justify-content: center">
+        {{- if in $entry.passkeys "allowed" -}}<div class="allowed"></div>{{- end -}}
+        {{- if in $entry.passkeys "required" -}}<div class="required"></div>{{- end -}}
+        {{- if in $entry.passkeys "mfa" -}}<div class="mfa"></div>{{- end -}}
       </div>
 
     {{- else -}}

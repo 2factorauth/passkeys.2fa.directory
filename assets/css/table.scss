@@ -113,47 +113,30 @@
       }
     }
 
-    .method {
-      display: flex;
-      flex-wrap: wrap;
-      font-size: 27px;
-      line-height: 53px;
 
-      * {
-        margin: auto;
-        display: block;
+    .supported {
+       *:before {
+        padding: .5em;
+        border-radius: 100px;
+         opacity: .9;
       }
 
-      &.used {
-        &:before {
-          content: '\F633';
-          font-family: 'bootstrap-icons';
-          margin: auto;
-          display: block;
-          font-weight: 600;
-        }
+      .allowed:before {
+        content: "Allowed";
+        background-color: #35be35;
       }
 
-      &.sms {
-        grid-area: 1 / 3 / 2 / 4;
+      .required:before {
+        content: "Required";
+        background: #f1962d;
       }
 
-      &.voice {
-        grid-area: 1 / 4 / 2 / 5;
-      }
-
-      &.email {
-        grid-area: 1 / 5 / 2 / 6;
-      }
-
-      &.hardware {
-        grid-area: 1 / 6 / 2 / 7;
-      }
-
-      &.software {
-        grid-area: 1 / 7 / 2 / 8;
+      .mfa:before {
+        content: "As 2FA";
+        background: var(--brand-color);
       }
     }
+
 
     .contact {
       margin-left: 1em;
