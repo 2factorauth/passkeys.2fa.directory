@@ -7,11 +7,11 @@ require 'json'
 require 'uri'
 
 path = ENV['LOCAL_2FA_PATH']
-response = path ? File.read("#{path}/api/v3/all.json") : Net::HTTP.get(URI('https://api.2fa.directory/v3/all.json'))
+response = path ? File.read("#{path}/api/private/all.json") : Net::HTTP.get(URI('https://api.2fa.directory/v3/all.json'))
 entries = {}
 
 JSON.parse(response).each do |name, website|
-  website['keywords'].each do |category|
+  website['categories'].each do |category|
     entries[category] = {} unless entries.key? category
     entries[category].merge!({ name => website })
   end

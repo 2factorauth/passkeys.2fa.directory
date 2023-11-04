@@ -5,7 +5,7 @@
 
     .table-head {
       display: grid;
-      grid-template-columns: 20em repeat(6, 1fr);
+      grid-template-columns: 20em 10em 1fr;
       grid-template-rows: 1fr;
       position: sticky;
       top: 0;
@@ -41,7 +41,7 @@
 
     /* replace with :has(.tfa) when supported */
     &.green {
-      grid-template-columns: 20em repeat(6, 1fr);
+      grid-template-columns: 20em 10em  1fr;
     }
 
     /* replace with :has(.contact) when supported */
