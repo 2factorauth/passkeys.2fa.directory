@@ -7,7 +7,7 @@ require 'json'
 require 'uri'
 
 path = ENV['LOCAL_2FA_PATH']
-response = path ? File.read("#{path}/api/private/all.json") : Net::HTTP.get(URI('https://api.2fa.directory/v3/all.json'))
+response = path ? File.read("#{path}/api/private/all.json") : Net::HTTP.get(URI('https://2factorauth.github.io/passkeys/api/private/all.json'))
 entries = {}
 
 JSON.parse(response).each do |name, website|
