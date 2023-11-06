@@ -5,7 +5,7 @@
 
     .table-head {
       display: grid;
-      grid-template-columns: 20em 10em 1fr;
+      grid-template-columns: 20em 10em 1fr 1fr;
       grid-template-rows: 1fr;
       position: sticky;
       top: 0;
@@ -41,12 +41,12 @@
 
     /* replace with :has(.tfa) when supported */
     &.green {
-      grid-template-columns: 20em 10em  1fr;
+      grid-template-columns: 20em 10em 1fr 1fr;
     }
 
     /* replace with :has(.contact) when supported */
     &.red {
-      grid-template-columns: 20em 1fr;
+      grid-template-columns: 20em 1fr 1fr;
       line-height: 4.4rem;
     }
 
@@ -62,6 +62,7 @@
       display: grid;
       grid-auto-flow: column;
       justify-content: space-between;
+
       :last-child {
         padding-right: .5em;
       }
@@ -70,7 +71,7 @@
     .name {
       grid-area: 1 / 1 / 2 / 2;
       line-height: 4.4rem;
-      padding: 0 ;
+      padding: 0;
     }
 
     .note {
@@ -113,27 +114,76 @@
       }
     }
 
+    .allowed::before {
+      font-family: 'bootstrap-icons';
+      content: "\F26E";
+      color: #35be35;
+      font-weight: bold;
+      font-size: 3.5em;
+      display: block;
+      line-height: 1.25em;
+      height: 100%;
+      text-align: center;
+    }
 
     .supported {
-       *:before {
+      * {
+        padding: 0 .5rem;
+        div {
+          width: max-content;
+          height: max-content;
+          margin: 0 auto;
+        }
+          p {
+            font-size: 0.9em;
+            line-height: 0.1em;
+            margin-top: -1.6em;
+            text-align: center;
+          }
+
+      }
+      *:before {
+        font-family: 'bootstrap-icons';
         padding: .5em;
-        border-radius: 100px;
-         opacity: .9;
+        opacity: .9;
+        color: var(--text-color);
+        font-size: 1.2em;
+        margin: auto;
+
       }
 
       .allowed:before {
-        content: "Allowed";
-        background-color: #35be35;
+        color: #35be35;
+        content: "\F26E";
+        font-weight: bold;
+        font-size: 3.5em;
+        //line-height: 0.5em;
       }
 
-      .required:before {
-        content: "Required";
-        background: #f1962d;
+      //.required:before {
+      //  background: #f1962d;
+      //  content: '\F537';
+      //}
+      .required {
+        //position: relative;
+        //
+        //&:after {
+        //  position: absolute;
+        //  content: '*';
+        //  color: red;
+        //  top: 0;
+        //  right: 0;
+        //}
+        &:before {
+          content: '\F537';
+        }
       }
 
       .mfa:before {
-        content: "As 2FA";
-        background: var(--brand-color);
+        color: var(--brand-color);
+        content: '\F534\F4FE\F451';
+        font-weight: bold;
+        font-size: 3em;
       }
     }
 
@@ -148,6 +198,7 @@
 
       button {
         margin-left: .5em;
+
         &:before {
           margin-right: .5em;
         }
@@ -176,8 +227,8 @@
 
     .tfa-summary {
       position: absolute;
-      top:-1000px;
-      left:-1000px;
+      top: -1000px;
+      left: -1000px;
     }
   }
 }
@@ -213,7 +264,7 @@
       }
     }
 
-    &.email,&.form {
+    &.email, &.form {
       background: #ea4235;
 
       &:before {

@@ -42,17 +42,14 @@ Explanation:
         {{- end -}}
       </div>
 
-      <ul aria-label="Supported 2FA methods" class="tfa-summary">
+      <ul aria-label="Passkey status" class="tfa-summary">
         {{- if in $entry.passkeys "allowed" -}}<li>Allowed</li>{{- end -}}
-        {{- if in $entry.passkeys "required" -}}<li>Required</li>{{- end -}}
-        {{- if in $entry.passkeys "mfa" -}}<li>MFA-only</li>{{- end -}}
+        {{- if in $entry.passkeys "required" -}}<li>Always enabled</li>{{- end -}}
+        {{- if in $entry.passkeys "mfa" -}}<li>Only as MFA</li>{{- end -}}
       </ul>
 
-      <div class="supported" style="display: flex; justify-content: center">
-        {{- if in $entry.passkeys "allowed" -}}<div class="allowed"></div>{{- end -}}
-        {{- if in $entry.passkeys "required" -}}<div class="required"></div>{{- end -}}
-        {{- if in $entry.passkeys "mfa" -}}<div class="mfa"></div>{{- end -}}
-      </div>
+      {{- if or (in $entry.passkeys "allowed") (in $entry.passkeys "allowed") -}}<div class="allowed"></div>{{- end -}}
+      {{- if in $entry.passkeys "mfa" -}}<div class="allowed"></div>{{- end -}}
 
     {{- else -}}
       <div class="tfa-summary"></div>
