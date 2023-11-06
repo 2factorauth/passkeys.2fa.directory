@@ -48,8 +48,8 @@ Explanation:
         {{- if in $entry.passkeys "mfa" -}}<li>Only as MFA</li>{{- end -}}
       </ul>
 
-      {{- if or (in $entry.passkeys "allowed") (in $entry.passkeys "allowed") -}}<div class="allowed"></div>{{- end -}}
-      {{- if in $entry.passkeys "mfa" -}}<div class="allowed"></div>{{- end -}}
+{{- if or (in $entry.passkeys "allowed") (in $entry.passkeys "required") -}}<div class="allowed"></div>{{ else }}<div></div>{{- end -}}
+{{- if in $entry.passkeys "mfa" -}}<div class="allowed"></div>{{ else }}<div></div>{{- end -}}
 
     {{- else -}}
       <div class="tfa-summary"></div>
