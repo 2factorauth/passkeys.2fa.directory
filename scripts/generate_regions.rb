@@ -22,8 +22,8 @@ if path
   regions = JSON.parse(File.read("#{path}/api/v3/regions.json"))
   entries = JSON.parse(File.read("#{path}/api/v3/all.json"))
 else
-  regions = API.fetch('https://api.2fa.directory/v3/regions.json')
-  entries = API.fetch('https://api.2fa.directory/v3/all.json')
+  regions = API.fetch('https://2factorauth.github.io/passkeys/api/private/regions.json')
+  entries = API.fetch('https://2factorauth.github.io/passkeys/api/private/all.json')
 end
 
 used_regions = []
@@ -52,11 +52,11 @@ all_regions = API.fetch('https://raw.githubusercontent.com/stefangabos/world_cou
                  .to_h
 
 # Change long official names
-all_regions.merge!({ 'us' => 'United States',
-                     'gb' => 'United Kingdom',
-                     'tw' => 'Taiwan',
-                     'ru' => 'Russia',
-                     'kr' => 'South Korea' })
+# all_regions.merge!({ 'us' => 'United States',
+#                      'gb' => 'United Kingdom',
+#                      'tw' => 'Taiwan',
+#                      'ru' => 'Russia',
+#                      'kr' => 'South Korea' })
 
 # Flags for these regions should have square geometry
 square_flags = %w[ch np va]
