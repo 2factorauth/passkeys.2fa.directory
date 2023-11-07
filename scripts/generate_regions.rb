@@ -15,16 +15,10 @@ module API
   end
 end
 
+path = ENV['LOCAL_2FA_PATH'] || 'https://2factorauth.github.io/passkeys'
 categories = JSON.parse(File.read('./data/categories.json'))
-
-path = ENV['LOCAL_2FA_PATH']
-if path
-  regions = JSON.parse(File.read("#{path}/api/v3/regions.json"))
-  entries = JSON.parse(File.read("#{path}/api/v3/all.json"))
-else
-  regions = API.fetch('https://2factorauth.github.io/passkeys/api/private/regions.json')
-  entries = API.fetch('https://2factorauth.github.io/passkeys/api/private/all.json')
-end
+regions = JSON.parse(File.read("#{path}/api/private/regions.json"))
+entries = JSON.parse(File.read("#{path}/api/private/all.json"))
 
 used_regions = []
 regions.each do |id, region|
@@ -38,12 +32,15 @@ regions.each do |id, region|
     unless entry_regions.nil?
       included = entry_regions.reject { |r| r.start_with?('-') }
       excluded = entry_regions.select { |r| r.start_with?('-') }.map! { |v| v.tr('-', '') }
-      next if (!included.empty? && !included&.include?(id)) || excluded.include?(id)
+      next if (!included.empty? && !included.include?(id)) || excluded.include?(id)
     end
-
-    entry['keywords'].each { |category| used_categories.merge!(categories.slice(category)) }
+    if entry['categories'].is_a?(Array)
+      entry['categories'].each { |category| used_categories.merge!(categories.slice(category)) }
+    else
+      used_categories.push entry['categories']
+    end
   end
-  File.open("./data/#{id}.json", 'w') { |file| file.write JSON.generate used_categories.sort.to_h }
+  File.open("./data/#{id}.json", 'w') { |file| file.write used_categories.sort.to_h.to_json }
 end
 
 all_regions = API.fetch('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/countries/en/world.json')
@@ -52,11 +49,12 @@ all_regions = API.fetch('https://raw.githubusercontent.com/stefangabos/world_cou
                  .to_h
 
 # Change long official names
-# all_regions.merge!({ 'us' => 'United States',
-#                      'gb' => 'United Kingdom',
-#                      'tw' => 'Taiwan',
-#                      'ru' => 'Russia',
-#                      'kr' => 'South Korea' })
+change_names = { 'us' => 'United States',
+                 'gb' => 'United Kingdom',
+                 'tw' => 'Taiwan',
+                 'ru' => 'Russia',
+                 'kr' => 'South Korea' }
+all_regions = all_regions.merge(change_names.select { |country, _| all_regions.key?(country) })
 
 # Flags for these regions should have square geometry
 square_flags = %w[ch np va]
