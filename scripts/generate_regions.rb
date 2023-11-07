@@ -19,12 +19,12 @@ path = ENV['LOCAL_2FA_PATH'] || 'https://2factorauth.github.io/passkeys'
 categories = JSON.parse(File.read('./data/categories.json'))
 regions = JSON.parse(File.read("#{path}/api/private/regions.json"))
 entries = JSON.parse(File.read("#{path}/api/private/all.json"))
-
+identifiers = JSON.parse(File.read('./data/region_identifiers.json'))
 used_regions = []
 regions.each do |id, region|
   next unless region['count'] >= 10 && !id.eql?('int')
 
-  used_regions.push(id)
+  identifiers.key?(id) ? identifiers[id]&.each { |r| used_regions.push(r) } : used_regions.push(id)
 
   used_categories = {}
   entries.each do |_, entry|
@@ -45,8 +45,7 @@ end
 
 all_regions = API.fetch('https://raw.githubusercontent.com/stefangabos/world_countries/master/data/countries/en/world.json')
                  .select { |region| used_regions.include?(region['alpha2']) }
-                 .map { |region| [region['alpha2'], region['name']] }
-                 .to_h
+                 .map { |region| [region['alpha2'], region['name']] }.to_h
 
 # Change long official names
 change_names = { 'us' => 'United States',
