@@ -15,10 +15,18 @@ module API
   end
 end
 
-path = ENV['LOCAL_2FA_PATH'] || 'https://2factorauth.github.io/passkeys'
+path = ENV['LOCAL_2FA_PATH']
+regions = if path
+            JSON.parse(File.read("#{path}/api/private/regions.json"))
+          else
+            API.fetch('https://2factorauth.github.io/passkeys/api/private/regions.json')
+          end
+entries = if path
+            JSON.parse(File.read("#{path}/api/private/all.json"))
+          else
+            API.fetch('https://2factorauth.github.io/passkeys/api/private/all.json')
+          end
 categories = JSON.parse(File.read('./data/categories.json'))
-regions = JSON.parse(File.read("#{path}/api/private/regions.json"))
-entries = JSON.parse(File.read("#{path}/api/private/all.json"))
 identifiers = JSON.parse(File.read('./data/region_identifiers.json'))
 used_regions = []
 regions.each do |id, region|
