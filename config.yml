@@ -1,4 +1,4 @@
-title: "Passkeys Directory"
+title: "Passkey Directory"
 copyright: "2factorauth"
 languageCode: "en"
 DefaultContentLanguage: "en"
@@ -11,7 +11,7 @@ enableRobotsTXT: true
 params:
   default:
     description: "List of sites with passkeys support."
-    github: "2factorauth/twofactorauth"
+    github: "2factorauth/passkeys"
     theme_color: "#38CCCC"
     icon_path: "https://api.2fa.directory/icons/"
     mastodon: "https://infosec.exchange/@2factorauth"
