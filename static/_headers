@@ -2,7 +2,7 @@
   X-Frame-Options: DENY
   Permissions-Policy: geolocation=(),microphone=(),camera=(),autoplay=(),payment=(),speaker=()fullscreen=(self)
   Access-Control-Allow-Origin: none
-  Content-Security-Policy: script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' https://2factorauth.github.io https://cdnjs.cloudflare.com/ajax/libs/flag-icons/; font-src https://cdnjs.cloudflare.com; block-all-mixed-content;
+  Content-Security-Policy: script-src 'self' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' https://2factorauth.github.io https://api.2fa.directory/icons/ https://cdnjs.cloudflare.com/ajax/libs/flag-icons/; font-src https://cdnjs.cloudflare.com; block-all-mixed-content;
 
 /about/
   ! Content-Security-Policy
