@@ -2,120 +2,88 @@
 layout: page
 title: API usage
 ---
+
 ## Introduction
 
-The data collected for the [2FA Directory](https://2fa.directory) website is also available as JSON files to enable developers to use it in their programs. The API with the highest version number is recommended since older versions might not include all available information.
+The data collected for the [Passkeys Directory][site] website is available as JSON files to enable developers to
+use it in their programs. You are free to use the API data as you wish, as long as you adhere to the repository [license][license].
 
-### Caching
+Please be aware that any icons included in this repository are the intellectual property of their respective authors.
+Redistribution of these icons freely through our API exceeds the bounds of normal fair-use principles.
+The API does, therefore, not provide a means for fetching website icons. We appreciate your understanding and adherence
+to these terms as we strive to respect the rights of icon creators.
 
-If you intend to query our JSON files often and with a lot of traffic, you may be blocked by Cloudflare, our reverse proxy provider. We therefore recommend that you cache the files locally for any significant traffic cases.
+### Optimizing API Usage and Dataset Retrieval
 
-### Avoid downloading unnecessary data
-
-If you only intend to use a specific dataset, like all sites supporting RFC-6238, we recommend using the URI which lists _just_ that. See [URIs](#uris) for available paths. The smaller, the better.
-
-## Version 3 {#v3}
-
-### URIs
-
-| Coverage                    | Unsigned File                                                                 | PGP Signed File                                                                       |
-|-----------------------------|-------------------------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| All sites                   | [/v3/all.json](https://api.2fa.directory/v3/all.json)                         | [/v3/all.json.sig](https://api.2fa.directory/v3/all.json.sig)                         |
-| All 2FA-supporting sites    | [/v3/tfa.json](https://api.2fa.directory/v3/tfa.json)                         | [/v3/tfa.json.sig](https://api.2fa.directory/v3/tfa.json.sig)                         |
-| SMS                         | [/v3/sms.json](https://api.2fa.directory/v3/sms.json)                         | [/v3/sms.json.sig](https://api.2fa.directory/v3/sms.json.sig)                         |
-| Phone calls                 | [/v3/call.json](https://api.2fa.directory/v3/call.json)                       | [/v3/call.json.sig](https://api.2fa.directory/v3/call.json.sig)                       |
-| Email 2FA                   | [/v3/email.json](https://api.2fa.directory/v3/email.json)                     | [/v3/email.json.sig](https://api.2fa.directory/v3/email.json.sig)                     |
-| non-U2F hardware 2FA tokens | [/v3/custom-hardware.json](https://api.2fa.directory/v3/custom-hardware.json) | [/v3/custom-hardware.json.sig](https://api.2fa.directory/v3/custom-hardware.json.sig) |
-| U2F hardware tokens         | [/v3/u2f.json](https://api.2fa.directory/v3/u2f.json)                         | [/v3/u2f.json.sig](https://api.2fa.directory/v3/u2f.json.sig)                         |
-| RFC-6238 (TOTP)             | [/v3/totp.json](https://api.2fa.directory/v3/totp.json)                       | [/v3/totp.json.sig](https://api.2fa.directory/v3/totp.json.sig)                       |
-| non-RFC-6238 software 2FA   | [/v3/custom-software.json](https://api.2fa.directory/v3/custom-software.json) | [/v3/custom-software.json.sig](https://api.2fa.directory/v3/custom-software.json.sig) |
-
-### Elements
-
-| Key                         | Value Type            |   Always Defined   | Description                                                                                                                                                                                             |
-|-----------------------------|-----------------------|:------------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| domain                      | <define>FQDN</define> | :heavy_check_mark: | The domain name of the service                                                                                                                                                                          |
-| img                         | String                |                    | Image name used. If this is not defined, the image name is `domain`.svg                                                                                                                                 |
-| url                         | URL                   |                    | URL of the site. If this is not defined, the url is https://`domain`                                                                                                                                    |
-| tfa                         | Array\<String>        |                    | Array containing all supported 2FA methods                                                                                                                                                              |
-| documentation               | URL                   |                    | URL to documentation page                                                                                                                                                                               |
-| recovery                    | URL                   |                    | URL to recovery documentation page                                                                                                                                                                      |
-| notes                       | String                |                    | Text describing any discrepancies in the 2FA implementation                                                                                                                                             |
-| contact                     | Object                |                    | Object containing contact details. See table below for elements                                                                                                                                         |
-| regions                     | Array\<String>        |                    | Array containing ISO 3166-1 country codes of the regions in which the site is available. If the site is available everywhere apart from a specific region, that region will be prefixed by a `-` symbol |
-| additional-domains          | Array\<hostname>      |                    | Array of domains that the site exists at in addition to the main domain listed in the `domain` field.                                                                                                   |
-| custom-(software\|hardware) | Array\<String>        |                    | Array of custom software/hardware methods that the site supports. Only present if the `tfa` element contains one of these 2FA types                                                                     |
-| keywords                    | Array\<String>        | :heavy_check_mark: | Array of categories to which the site belongs                                                                                                                                                           |
-
-#### Contact Object Elements
-| Key      | Value  | Always Defined | Description                                                            |
-|----------|--------|:--------------:|------------------------------------------------------------------------|
-| twitter  | String |                | Twitter handle                                                         |
-| facebook | String |                | Facebook page name                                                     |
-| email    | String |                | Email address to support                                               |
-| form     | String |                | Support contact form                                                   |
-| language | String |                | Lowercase ISO 639-1 language code for the site if it is not in English |
-
-### Example website with 2FA enabled
-
-```JSON
-[
-  [
-    "Site Name",
-    {
-      "domain": "example.com",
-      "additional-domains": [
-        "example.net"
-      ],
-      "tfa": [
-        "sms",
-        "call",
-        "email",
-        "totp",
-        "u2f",
-        "custom-software",
-        "custom-hardware"
-      ],
-      "custom-software": [
-        "Authy"
-      ],
-      "documentation": "<link to site TFA documentation>",
-      "recovery": "<link to site TFA recovery documentation>",
-      "keywords": [
-        "keyword1",
-        "keyword2"
-      ]
-    }
-  ]
-]
-```
-
-### Example website with 2FA disabled
-
-```JSON
-[
-  [
-    "Site Name", 
-    {
-      "domain": "example.com",
-      "contact": {
-        "twitter": "example",
-        "facebook": "example",
-        "email": "example@example.com"
-      },
-      "keywords": [
-        "keyword1",
-        "keyword2"
-      ]
-    }
-  ]
-]
-```
-
-## Version 2 {#v2}
-
-API version 2 is no longer available. Please upgrade to [version 3](#v3) if you use this version.
+If you anticipate frequent and high-traffic queries on our JSON files, Cloudflare, our reverse proxy provider, may be
+blocked. We recommend locally caching the files to optimize performance, especially for scenarios involving substantial
+traffic. For specific datasets, such as all sites supporting passwordless authentication, consider utilizing the
+corresponding URI for more targeted and efficient results. Refer to [URIs](#uris) for the available paths.
 
 ## Version 1 {#v1}
 
-API version 1 is no longer available. Please upgrade to [version 3](#v3) if you use this version.
+### URIs
+
+| Coverage                                                 | Unsigned File           | PGP Signed File         |
+|----------------------------------------------------------|-------------------------|-------------------------|
+| All websites.                                            | `/v1/all.json`          | `/v1/all.json`          |
+| Websites with any form of passkey support.               | `/v1/supported.json`    | `/v1/supported.json`    |
+| Websites supporting passwordless authentication.         | `/v1/passwordless.json` | `/v1/passwordless.json` |
+| Websites supporting passkey multi factor authentication. | `/v1/mfa.json`          | `/v1/mfa.json`          |
+
+### Elements
+
+Below you'll find a table describing all possible keys in the API files.  
+You can also use the [JSON Schema][json_schema] for a more complete overview.
+
+| Key                | Value Type     | Pattern                                                            | Description                                                                                                                                                                                             |
+|--------------------|----------------|--------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| url                | URI            | [uri](https://www.rfc-editor.org/info/rfc6570)                     | URL of the site. If this is not defined, the url is https://`domain`                                                                                                                                    |
+| additional-domains | Array\<String> | [hostname (RFC-1123 2.1)](https://www.rfc-editor.org/info/rfc1123) | Array of domains that the site exists at in addition to the main domain listed in the `domain` field.                                                                                                   |
+| mfa                | String         | `/^(allowed\|required)$/`                                          | Contains `allowed` if passwordless authentication is supported but optional. Contains `required` if the service forces the usage of passwordless authentication.                                        |
+| passwordless       | String         | `/^(allowed\|required)$/`                                          | Contains `allowed` if passkey as MFA authentication is supported but optional. Contains `required` if the service forces the usage of passkeys as MFA authentication.                                   |
+| documentation      | URI            | [uri](https://www.rfc-editor.org/info/rfc6570)                     | URL to documentation page                                                                                                                                                                               |
+| recovery           | URI            | [uri](https://www.rfc-editor.org/info/rfc6570)                     | URL to recovery documentation page                                                                                                                                                                      |
+| notes              | String         | `/^(\w){10,}$/`                                                    | Text describing any discrepancies in the 2FA implementation                                                                                                                                             |
+| contact            | Object         | [See Contact Object Elements](#contact)                            | Object containing contact details. See table below for elements                                                                                                                                         |
+| regions            | Array\<String> | `/^-?[a-z]{2}$/`                                                   | Array containing ISO 3166-1 country codes of the regions in which the site is available. If the site is available everywhere apart from a specific region, that region will be prefixed by a `-` symbol |
+
+#### Contact Object Elements {#contact}
+
+| Key      | Value  | Pattern                                                           | Description                                                            |
+|----------|--------|-------------------------------------------------------------------|------------------------------------------------------------------------|
+| twitter  | String | `/^(\w){1,15}$/`                                                  | Twitter/X handle                                                       |
+| facebook | String | `/^(\w){1,}$/`                                                    | Facebook page name                                                     |
+| email    | String | [email (RFC-5321 4.1.2)](https://www.rfc-editor.org/info/rfc5321) | Email address to support                                               |
+| form     | String | [uri](https://www.rfc-editor.org/info/rfc6570)                    | Support contact form                                                   |
+| language | String | `/^[a-z]{2}$/`                                                    | Lowercase ISO 639-1 language code for the site if it is not in English |
+
+### Example website with passkey support
+
+```JSON
+{
+  "example.com": {
+    "passwordless": "allowed",
+    "mfa": "allowed",
+    "documentation": "https://example.com/support/enable-passkey.html"
+  }
+}
+```
+
+### Example website without passkey support
+
+```JSON
+{
+  "example.com": {
+    "contact": {
+      "twitter": "example",
+      "facebook": "example",
+      "email": "example@example.com"
+    }
+  }
+}
+``` 
+
+[site]: https://passkeys.2fa.directory/
+[json_schema]: https://github.com/2factorauth/passkeys/blob/master/tests/api_schema.json
+[license]: https://github.com/2factorauth/passkeys/tree/master/LICENSE.md
