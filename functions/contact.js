@@ -1,6 +1,6 @@
 async function i18n(type, lang) {
   // Fetch locale data from 2factorauth/frontend
-  const response = await fetch('https://raw.githubusercontent.com/2factorauth/frontend/master/data/languages.json');
+  const response = await fetch('https://raw.githubusercontent.com/2factorauth/passkeys.2fa.directory/master/data/languages.json');
   const languages = await response.json();
   // Default language is English
   if (!(lang in languages)) lang = 'en';
@@ -34,7 +34,7 @@ async function email(handle, lang) {
 
 async function twitter(handle, lang) {
   const text = (await i18n('tweets', lang)).replace('TWITTERHANDLE', handle)
-  const uri = `https://twitter.com/intent/tweet?text=${text}&hashtags=SupportTwoFactorAuth&related=2faorg`
+  const uri = `https://twitter.com/intent/tweet?text=${text}&hashtags=SupportPasskeys&related=2faorg`
   return Response.redirect(uri, 302);
 }
 

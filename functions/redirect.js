@@ -1,5 +1,5 @@
 export async function onRequest({env, request}) {
-  const base = env.base || 'https://2fa.pages.dev/'
+  const base = env.base || 'https://passkeys.2fa.directory/'
   const country = request.cf?.country.toLowerCase() || "int";
   let uri = `${base}${country}`
   const res = await fetch(uri, {
