@@ -1,8 +1,17 @@
-# Passkeys Frontend
+<h1 align="center">Passkeys Directory - Frontend</h1>
+
+<p align="center">
+  <a href="https://twitter.com/2faorg/"><img src="https://img.shields.io/badge/X/Twitter-@2faorg-1DA1F2.svg?style=for-the-badge&logo=x"/></a>
+  <a href="https://infosec.exchange/@2factorauth"><img src="https://img.shields.io/badge/Mastodon-@2factorauth-6364FF?style=for-the-badge&logo=mastodon"/></a>
+  <a href="https://github.com/sponsors/2factorauth/"><img src="https://img.shields.io/github/sponsors/2factorauth?color=db61a2&logo=GitHub&style=for-the-badge"/></a>
+</p>
+
+[Passkeys Directory][website] is an open-source project that aims to improve online security by providing a directory of
+websites and services that support passkey authentication. Our community-driven platform allows anyone to contribute to
+the list, making it the most comprehensive directory of its kind.
 
 This repository contains the HTML, JavaScript and CSS for [passkeys.2fa.directory][website].  
-All data used to populate the categories is located
-in [2factorauth/passkeys][data_repo].
+The data used to populate the categories is located in [2factorauth/passkeys][data_repo].
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/JnnjEyg.png">
