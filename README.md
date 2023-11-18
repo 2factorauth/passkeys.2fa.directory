@@ -4,13 +4,16 @@ This repository contains the HTML, JavaScript and CSS for [passkeys.2fa.director
 All data used to populate the categories is located
 in [2factorauth/passkeys][data_repo].
 
-![][screenshot]
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://i.imgur.com/JnnjEyg.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://i.imgur.com/92cAVal.png">
+  <img alt="screenshot" src="https://i.imgur.com/mNW7Dnp.png">
+</picture>
 
 ## Local installation
 
 The website is based on the static site generator [Hugo][hugo].
-To build locally you will need to follow the [installation instructions][hugo_install] for Hugo.  
-[Ruby][ruby_install] is also required for some scripts.
+To build locally you will need to follow the [installation instructions][hugo_install] for Hugo. [Ruby][ruby_install] is also required for some scripts.
 
 After you've installed Hugo and Ruby, follow these steps to build the site locally:
 
@@ -26,7 +29,7 @@ After you've installed Hugo and Ruby, follow these steps to build the site local
    `hugo serve`  
    The site should then be reachable at [127.0.0.1:1313][localhost].
 
-> **Note**
+> [!Note]
 > The [region-redirection](/functions/redirect.js) script does not run locally. You will therefore always be directed to
 > the international page when using `hugo serve`.
 
@@ -84,4 +87,3 @@ this [guide][gplv3_guide].
 [hugo_install]: https://gohugo.io/installation/
 [ruby_install]: https://www.ruby-lang.org/en/documentation/installation/
 [website]: https://passkeys.2fa.directory/
-[screenshot]: https://i.imgur.com/4WvIsg0.png
