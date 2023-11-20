@@ -2,7 +2,7 @@
 const client = algoliasearch('9TTZ08M03E', 'faa905e846fea4f08548776bc7273855')
 
 // Create a new index and add a record
-const index = client.initIndex('2fa.directory')
+const index = client.initIndex('passkeys.2fa.directory')
 
 // Wait for user to stop typing before searching
 let timeout = null;
@@ -32,7 +32,7 @@ function sendSearch(query) {
 
     // Set search options array
     let options = {
-      hitsPerPage: 500, attributesToRetrieve: ['objectID']
+      hitsPerPage: 500, attributesToRetrieve: ['name']
     }
 
     if(query.match('^[x|X]$')) query = '"X"'
@@ -59,10 +59,11 @@ function sendSearch(query) {
     index.search(query, options)
       .then(({hits}) => {
         hits.forEach((hit) => {
-          const entry_name = hit['objectID'];
-          const entry = $(`.entry[data-domain^='${entry_name}']`);
+          const entry_name = hit['name'];
+          const entry = $(`.entry:has(.name[title="${entry_name}"])`);
           entry.addClass('hit');
-          const entry_parent = $(`.table > .entry[data-domain^='${entry_name}']`).parent();
+          const entry_parent = $(`.table > .entry:has(.name[title="${entry_name}"])`).parent();
+          entry_parent.css('grid-area','')
           entry_parent.addClass('show');
         })
 

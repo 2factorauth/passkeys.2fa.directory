@@ -28,7 +28,7 @@ Explanation:
 -}}
 {{ $supported := or (index $entry "mfa") (index $entry "passwordless") }}
   <!-- Display entry -->
-  <div role="article" class="entry {{ if $supported }}green{{ else }}red{{ end }}" data-domain="{{- $entry.domain -}}">
+  <div role="article" class="entry">
     <div class="title">
         <a class="name" href="{{- with $entry.url -}}{{- . -}}{{- else -}}https://{{- $entry.domain -}}{{- end -}}" title="{{- htmlUnescape $entry.name -}}"><img class="logo" loading="lazy" src="{{ default $.icon_path $entry.img_src }}{{- with $entry.img -}}{{- substr . 0 1 -}}/{{ . }}{{- else -}}{{- substr $entry.domain 0 1 -}}/{{- $entry.domain -}}.svg{{- end -}}" aria-hidden="true" alt="">{{- htmlUnescape $entry.name -}}</a>
       {{ if index $entry "notes" }}<i class="note bi bi-exclamation-diamond-fill" tabindex="0" data-bs-toggle="popover" data-bs-content="{{ $entry.notes }}"></i>{{ end }}
@@ -52,10 +52,9 @@ Explanation:
       {{- if index $entry "mfa" -}}<div class="{{ $entry.mfa }}"></div>{{ else }}<div></div>{{- end -}}
 
     {{- else -}}
-      <div class="tfa-summary"></div>
 
       <div class="contact" aria-label="Passkeys not supported">
-          {{- if index $entry.contact "twitter" -}}<button class="contact-btn twitter" data-twitter="{{ $entry.contact.twitter }}"></button>{{- end -}}
+        {{- if index $entry.contact "twitter" -}}<button class="contact-btn twitter" data-twitter="{{ $entry.contact.twitter }}"></button>{{- end -}}
         {{- if index $entry.contact "facebook" -}}<button class="contact-btn facebook" data-facebook="{{ $entry.contact.facebook }}"></button>{{- end -}}
         {{- if index $entry.contact "email" -}}<button class="contact-btn email" data-email="{{ $entry.contact.email }}"></button>{{- else -}}
         {{- if index $entry.contact "form" -}}<button class="contact-btn form" data-form="{{ $entry.contact.form }}"></button>{{- end -}}{{- end -}}
