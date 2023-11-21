@@ -11,6 +11,7 @@ nav {
       padding-left: 33.5833px;
       margin: auto;
     }
+
     .icon {
       padding-left: 0;
       margin: 0;
@@ -21,7 +22,6 @@ nav {
         align-items: center;
 
         list-style: none;
-        font-family: "SF Pro Display", var(--default-font);
         font-weight: 300;
         font-size: 1.5em;
 
@@ -57,8 +57,6 @@ nav {
 
   .nav-item {
     margin: 0 .1em;
-
-
   }
 
   #regionDropdown {
@@ -82,7 +80,6 @@ nav {
 @media screen and (max-width: 992px) {
   .back-to-top-link {
     $back-to-top-size: 3rem;
-
     z-index: 1100;
     position: fixed;
     bottom: 3vh;
@@ -90,18 +87,26 @@ nav {
     text-align: center;
     color: var(--text-color);
     background: var(--background);
-    font-size: $back-to-top-size;
-    line-height: $back-to-top-size;
+    font-size: 1.5rem;
+    line-height: 2.7rem;
     width: $back-to-top-size;
     height: $back-to-top-size;
     border-radius: 50%;
+    border: var(--secondary-background) 1px solid;
     transition: ease-in-out 0.2s;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:before {
+      content: '\F286';
+      font-family: 'bootstrap-icons';
+    }
 
     &:hover {
       color: var(--primary);
     }
 
-    &-moved{
+    &-moved {
       bottom: -$back-to-top-size;
     }
   }
