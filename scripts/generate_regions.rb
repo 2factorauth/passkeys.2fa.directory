@@ -19,12 +19,12 @@ path = ENV['LOCAL_2FA_PATH']
 regions = if path
             JSON.parse(File.read("#{path}/api/private/regions.json"))
           else
-            API.fetch('https://2factorauth.github.io/passkeys/api/private/regions.json')
+            API.fetch('https://api.passkeys.2fa.directory/api/private/regions.json')
           end
 entries = if path
             JSON.parse(File.read("#{path}/api/private/all.json"))
           else
-            API.fetch('https://2factorauth.github.io/passkeys/api/private/all.json')
+            API.fetch('https://api.passkeys.2fa.directory/api/private/all.json')
           end
 categories = JSON.parse(File.read('./data/categories.json'))
 identifiers = JSON.parse(File.read('./data/region_identifiers.json'))
