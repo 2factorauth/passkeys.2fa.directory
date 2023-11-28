@@ -20,7 +20,7 @@ entries = {}
 Parallel.each(JSON.parse(response), in_threads: 16) do |name, entry|
   entry['categories'].each do |category|
     entries[category] = {} unless entries.key? category
-    entry['img_src'] = 'https://api.passkeys.2fa.directory/' unless check_image(entry['img'] || "#{entry['domain']}.svg")
+    entry['img_src'] = 'https://api.2fa.directory/icons/' unless check_image(entry['img'] || "#{entry['domain']}.svg")
     entries[category].merge!({ name => entry })
   end
 end
