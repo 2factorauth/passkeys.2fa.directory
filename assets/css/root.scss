@@ -13,7 +13,7 @@
   --table-text-color: #212529;
 
   --category-btn-bg: #eeeeee96;
-  --category-btn-border: 1px solid #8c8c8c;
+  --category-btn-border: .2em solid #eeeeee96;
 
   @media (prefers-color-scheme: dark) {
     color-scheme: dark;
@@ -27,7 +27,8 @@
     --table-bg-green: #b1dfbb;
     --table-text-color: #212529;
 
-    --category-btn-bg: #4242428f;
+    --category-btn-bg: #333b3b;
+    --category-btn-border: .2em solid #333b3b;
 
     --bs-nav-link-color: var(--text-color) !important;
     --bs-navbar-color: var(--text-color);
