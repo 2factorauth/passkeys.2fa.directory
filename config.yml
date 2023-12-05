@@ -10,7 +10,7 @@ enableRobotsTXT: true
 
 params:
   default:
-    description: "List of sites with passkeys support."
+    description: "Directory of sites with passkeys support"
     github: "2factorauth/passkeys"
     theme_color: "#38CCCC"
     icon_path: "https://api.passkeys.2fa.directory/icons/"
@@ -18,7 +18,7 @@ params:
 
   twitter:
     handle: "2faorg"
-    card: "/icons/social-card.png"
+    card: "https://i.imgur.com/92cAVal.png"
 
 outputFormats:
   manifest:
@@ -30,3 +30,7 @@ outputFormats:
 outputs:
   home:
     - "MANIFEST"
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
