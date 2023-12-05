@@ -24,12 +24,12 @@ corresponding URI for more targeted and efficient results. Refer to [URIs](#uris
 
 ### URIs
 
-| Coverage                                                 | Unsigned File           | PGP Signed File         |
-|----------------------------------------------------------|-------------------------|-------------------------|
-| All websites.                                            | `/v1/all.json`          | `/v1/all.json`          |
-| Websites with any form of passkey support.               | `/v1/supported.json`    | `/v1/supported.json`    |
-| Websites supporting passwordless authentication.         | `/v1/passwordless.json` | `/v1/passwordless.json` |
-| Websites supporting passkey multi factor authentication. | `/v1/mfa.json`          | `/v1/mfa.json`          |
+| Coverage                                                 | Unsigned File                                             | PGP Signed File                                               |
+|----------------------------------------------------------|-----------------------------------------------------------|---------------------------------------------------------------|
+| All websites.                                            | `https://api.passkeys.2fa.directory/v1/all.json`          | `https://api.passkeys.2fa.directory/v1/all.json.sig`          |
+| Websites with any form of passkey support.               | `https://api.passkeys.2fa.directory/v1/supported.json`    | `https://api.passkeys.2fa.directory/v1/supported.json.sig`    |
+| Websites supporting passwordless authentication.         | `https://api.passkeys.2fa.directory/v1/passwordless.json` | `https://api.passkeys.2fa.directory/v1/passwordless.json.sig` |
+| Websites supporting passkey multi factor authentication. | `https://api.passkeys.2fa.directory/v1/mfa.json`          | `https://api.passkeys.2fa.directory/v1/mfa.json.sig`          |
 
 ### Elements
 
