@@ -126,8 +126,14 @@
       margin-left: 1em;
 
       &:before {
-        content: 'Tell them to support 2FA';
         margin-right: .25em;
+      }
+
+      &:has(button):before {
+          content: 'Tell them to support passkeys';
+      }
+      &:not(:has(button)):before{
+        content: 'Passkeys not supported'
       }
 
       button {
@@ -142,7 +148,7 @@
         }
 
         &.twitter:after {
-          content: 'On Twitter';
+          content: 'On X (Twitter)';
         }
 
         &.facebook:after {
@@ -183,10 +189,10 @@
     }
 
     &.twitter {
-      background: #1da1f2;
+      background: #000;
 
       &:before {
-        content: '\F5EF';
+        content: '\F8DB';
       }
     }
 
@@ -360,7 +366,7 @@
     &:has(.contact) {
       .tfa-summary:before {
         display: block;
-        content: '2FA Not Supported';
+        content: 'Passkeys Not Supported';
         font-family: var(--default-font);
         font-weight: 300;
         text-align: center;

@@ -14,7 +14,7 @@ def check_image(image)
 end
 
 path = ENV['LOCAL_2FA_PATH']
-response = path ? File.read("#{path}/api/private/all.json") : Net::HTTP.get(URI('https://api.passkeys.2fa.directory/api/private/all.json'))
+response = path ? File.read("#{path}/private/all.json") : Net::HTTP.get(URI('https://api.passkeys.2fa.directory/private/all.json'))
 entries = {}
 
 Parallel.each(JSON.parse(response), in_threads: 16) do |name, entry|
