@@ -11,7 +11,14 @@ require 'uri'
 module API
   def self.fetch(uri)
     response = Net::HTTP.get_response URI(uri)
-    JSON.parse(response.body) unless response.code.eql? 200
+
+    if response.code.eql? "200"
+      return JSON.parse(response.body)
+    else
+      puts uri
+      puts response.code
+      puts response.body
+    end
   end
 end
 
@@ -19,12 +26,12 @@ path = ENV['LOCAL_2FA_PATH']
 regions = if path
             JSON.parse(File.read("#{path}/private/regions.json"))
           else
-            API.fetch('https://api.passkeys.2fa.directory/private/regions.json')
+            API.fetch('https://passkeys-api.2fa.directory/private/regions.json')
           end
 entries = if path
             JSON.parse(File.read("#{path}/private/all.json"))
           else
-            API.fetch('https://api.passkeys.2fa.directory/private/all.json')
+            API.fetch('https://passkeys-api.2fa.directory/private/all.json')
           end
 categories = JSON.parse(File.read('./data/categories.json'))
 identifiers = JSON.parse(File.read('./data/region_identifiers.json'))
