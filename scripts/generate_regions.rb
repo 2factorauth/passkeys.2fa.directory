@@ -24,17 +24,17 @@ end
 
 path = ENV['LOCAL_2FA_PATH']
 regions = if path
-            JSON.parse(File.read("#{path}/private/regions.json", "r:UTF-8", &:read))
+            JSON.parse(File.open("#{path}/private/regions.json", "r:UTF-8", &:read))
           else
             API.fetch('https://passkeys-api.2fa.directory/private/regions.json')
           end
 entries = if path
-            JSON.parse(File.read("#{path}/private/all.json", "r:UTF-8", &:read))
+            JSON.parse(File.open("#{path}/private/all.json", "r:UTF-8", &:read))
           else
             API.fetch('https://passkeys-api.2fa.directory/private/all.json')
           end
-categories = JSON.parse(File.read('./data/categories.json', "r:UTF-8", &:read))
-identifiers = JSON.parse(File.read('./data/region_identifiers.json', "r:UTF-8", &:read))
+categories = JSON.parse(File.open('./data/categories.json', "r:UTF-8", &:read))
+identifiers = JSON.parse(File.open('./data/region_identifiers.json', "r:UTF-8", &:read))
 used_regions = []
 regions.each do |id, region|
   next unless region['count'] >= 10 && !id.eql?('int')
