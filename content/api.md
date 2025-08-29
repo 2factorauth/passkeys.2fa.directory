@@ -26,10 +26,10 @@ corresponding URI for more targeted and efficient results. Refer to [URIs](#uris
 
 | Coverage                                                 | Unsigned File                                             | PGP Signed File                                               |
 |----------------------------------------------------------|-----------------------------------------------------------|---------------------------------------------------------------|
-| All websites.                                            | `https://api.passkeys.2fa.directory/v1/all.json`          | `https://api.passkeys.2fa.directory/v1/all.json.sig`          |
-| Websites with any form of passkey support.               | `https://api.passkeys.2fa.directory/v1/supported.json`    | `https://api.passkeys.2fa.directory/v1/supported.json.sig`    |
-| Websites supporting passwordless authentication.         | `https://api.passkeys.2fa.directory/v1/passwordless.json` | `https://api.passkeys.2fa.directory/v1/passwordless.json.sig` |
-| Websites supporting passkey multi factor authentication. | `https://api.passkeys.2fa.directory/v1/mfa.json`          | `https://api.passkeys.2fa.directory/v1/mfa.json.sig`          |
+| All websites.                                            | `https://passkeys-api.2fa.directory/v1/all.json`          | `https://passkeys-api.2fa.directory/v1/all.json.sig`          |
+| Websites with any form of passkey support.               | `https://passkeys-api.2fa.directory/v1/supported.json`    | `https://passkeys-api.2fa.directory/v1/supported.json.sig`    |
+| Websites supporting passwordless authentication.         | `https://passkeys-api.2fa.directory/v1/passwordless.json` | `https://passkeys-api.2fa.directory/v1/passwordless.json.sig` |
+| Websites supporting passkey multi factor authentication. | `https://passkeys-api.2fa.directory/v1/mfa.json`          | `https://passkeys-api.2fa.directory/v1/mfa.json.sig`          |
 
 ### Elements
 
