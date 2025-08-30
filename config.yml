@@ -13,7 +13,7 @@ params:
     description: "Directory of sites with passkeys support"
     github: "2factorauth/passkeys"
     theme_color: "#38CCCC"
-    icon_path: "https://api.passkeys.2fa.directory/icons/"
+    icon_path: "https://passkeys-api.2fa.directory/icons/"
     mastodon: "https://infosec.exchange/@2factorauth"
 
   twitter:
